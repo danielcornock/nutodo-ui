@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IHttpModel } from '@danielc7150/ng-api';
+import { StateService } from '@uirouter/core';
+import { ModelService } from 'src/app/core/model-service/model.service';
 
 @Component({
   selector: 'app-todos-list',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todos-list.component.scss']
 })
 export class TodosListComponent implements OnInit {
+  public todos: IHttpModel;
 
-  constructor() { }
+  constructor(private readonly _modelService: ModelService, private readonly _stateService: StateService) {}
 
-  ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
+    this.todos = await this._modelService.get('todos');
   }
 
+  public createNewTodo(): void {
+    this._stateService.go('todoCreate');
+  }
 }

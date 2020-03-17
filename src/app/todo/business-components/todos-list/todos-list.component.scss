@@ -1,0 +1,15 @@
+.todoList {
+  &-addNew {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-size: 30px;
+    background-color: #7542f5;
+    color: white;
+    padding: 15px;
+    border-radius: 999px;
+    line-height: 60%;
+    cursor: pointer;
+    border: initial;
+  }
+}

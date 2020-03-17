@@ -1,1 +1,8 @@
-<p>todos-list works!</p>
+<div class="todoList-container" *ngIf="todos">
+  <div class="todoList-todo" *ngFor="let todo of todos.data">
+    <input type="checkbox" />
+    {{ todo.title }}
+  </div>
+
+  <button class="todoList-addNew" (click)="createNewTodo()">+</button>
+</div>

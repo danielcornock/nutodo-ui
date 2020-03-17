@@ -1,0 +1,12 @@
+<div class="todoCreate-container" *ngIf="formContainer">
+  <form [formGroup]="formContainer.form" (ngSubmit)="saveTodo()">
+    <app-form-input-text
+      [fieldConfig]="formContainer.fields.title"
+    ></app-form-input-text>
+    <app-form-input-select
+      [fieldConfig]="formContainer.fields.category"
+    ></app-form-input-select>
+
+    <input *ngIf="isValid()" type="submit" value="Create todo" />
+  </form>
+</div>

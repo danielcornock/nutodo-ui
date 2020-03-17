@@ -1,0 +1,14 @@
+<label [attr.for]="fieldConfig.name" class="formInputSelect-label">
+  <select
+    [attr.name]="fieldConfig.name"
+    [attr.id]="fieldConfig.name"
+    [formControl]="fieldConfig.control"
+    #input
+  >
+    <option
+      *ngFor="let option of fieldConfig.config.options"
+      [value]="option.value"
+      >{{ option.label }}</option
+    >
+  </select>
+</label>
