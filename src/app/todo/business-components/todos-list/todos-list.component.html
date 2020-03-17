@@ -1,8 +1,7 @@
 <div class="todoList-container" *ngIf="todos">
-  <div class="todoList-todo" *ngFor="let todo of todos.data">
-    <input type="checkbox" />
-    {{ todo.title }}
-  </div>
+  <app-todos-sublist [todosSublist]="weeklyTodos"></app-todos-sublist>
+  <app-todos-sublist [todosSublist]="monthlyTodos"></app-todos-sublist>
+  <app-todos-sublist [todosSublist]="backlogTodos"></app-todos-sublist>
 
   <button class="todoList-addNew" (click)="createNewTodo()">+</button>
 </div>
