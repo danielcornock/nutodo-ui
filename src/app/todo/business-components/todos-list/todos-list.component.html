@@ -1,7 +1,45 @@
-<div class="todoList-container" *ngIf="todos">
-  <app-todos-sublist [todosSublist]="weeklyTodos"></app-todos-sublist>
-  <app-todos-sublist [todosSublist]="monthlyTodos"></app-todos-sublist>
-  <app-todos-sublist [todosSublist]="backlogTodos"></app-todos-sublist>
+<div class="todoList-container">
+  <div class="todoList-categoryButtonContainer">
+    <button
+      class="todoList-categoryButton"
+      [class.todoList-categoryButton--active]="isActive('week')"
+      (click)="setActive('week')"
+    >
+      Weekly
+    </button>
+    <button
+      class="todoList-categoryButton"
+      [class.todoList-categoryButton--active]="isActive('month')"
+      (click)="setActive('month')"
+    >
+      Monthly
+    </button>
+    <button
+      class="todoList-categoryButton"
+      [class.todoList-categoryButton--active]="isActive('backlog')"
+      (click)="setActive('backlog')"
+    >
+      Backlog
+    </button>
+  </div>
+
+  <div class="todoList-listContainer">
+    <app-todos-sublist
+      *ngIf="isActive('week')"
+      [todosSublist]="weeklyTodos"
+      (todosSublistOnRefresh)="refreshList()"
+    ></app-todos-sublist>
+    <app-todos-sublist
+      *ngIf="isActive('month')"
+      [todosSublist]="monthlyTodos"
+      (todosSublistOnRefresh)="refreshList()"
+    ></app-todos-sublist>
+    <app-todos-sublist
+      *ngIf="isActive('backlog')"
+      [todosSublist]="backlogTodos"
+      (todosSublistOnRefresh)="refreshList()"
+    ></app-todos-sublist>
+  </div>
 
   <button class="todoList-addNew" (click)="createNewTodo()">+</button>
 </div>

@@ -1,5 +1,30 @@
 <div class="todoItem-container">
-  <label [attr.for]="todoItem.id" class="todoItem-labelContainer"></label>
-  <input type="checkbox" class="todoItem-checkbox" />
-  <p class="todoItem-label">{{ todoItem.title }}</p>
+  <button
+    class="todoItem-moveButton"
+    *ngIf="categoryIsNot(TODO_CATEGORY.Week)"
+    (click)="moveLeft()"
+  >
+    <
+  </button>
+
+  <div class="todoItem-todoContainer">
+    <label [attr.for]="todoItemModel.id" class="todoItem-labelContainer">
+      <input
+        [attr.id]="todoItemModel.id"
+        type="checkbox"
+        class="todoItem-checkbox"
+        [checked]="todoItemModel.data.completed"
+        (change)="setCheckedStatus($event)"
+      />
+      <p class="todoItem-label">{{ todoItemModel.data.title }}</p>
+    </label>
+  </div>
+
+  <button
+    class="todoItem-moveButton"
+    *ngIf="categoryIsNot(TODO_CATEGORY.Backlog)"
+    (click)="moveRight()"
+  >
+    >
+  </button>
 </div>

@@ -1,0 +1,30 @@
+@import 'src/assets/styles/themes';
+
+.todoItem {
+  &-container {
+    display: flex;
+  }
+
+  &-checkbox {
+    margin-right: 10px;
+  }
+
+  &-moveButton {
+    @include button-reset;
+    background-color: $blue-200;
+    color: $blue-600;
+    border-radius: 5px;
+    padding: 30px;
+  }
+
+  &-labelContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 15px;
+  }
+
+  &-todoContainer {
+    flex: 1 1 100%;
+  }
+}

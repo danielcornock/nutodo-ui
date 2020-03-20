@@ -1,7 +1,9 @@
-<div class="todosSublist-container">
+<form class="todosSublist-container">
   <app-todo-item
     class="todosSublist-todo"
-    *ngFor="let todo of todosSublist"
-    [todoItem]="todo"
+    *ngFor="let todoModel of todosSublist; let i = index"
+    [todoItemModel]="todoModel"
+    (todoItemMoveLeft)="moveTodo(i, 'left')"
+    (todoItemMoveRight)="moveTodo(i, 'right')"
   ></app-todo-item>
-</div>
+</form>

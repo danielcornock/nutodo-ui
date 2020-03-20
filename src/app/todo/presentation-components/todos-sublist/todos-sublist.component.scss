@@ -1,0 +1,15 @@
+@import 'src/assets/styles/themes.scss';
+
+.todosSublist {
+  &-todo {
+    display: block;
+    margin: 0 15px;
+    & + & {
+      border-top: 2px solid $green-200;
+    }
+
+    @include hover(0) {
+      background-color: $green-200;
+    }
+  }
+}

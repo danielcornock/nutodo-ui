@@ -1,0 +1,14 @@
+.formInputCheckbox {
+  &-labelContainer {
+    display: flex;
+    align-items: center;
+    padding: 25px 0;
+  }
+
+  &-checkbox {
+    margin-right: 15px;
+  }
+
+  &-label {
+  }
+}

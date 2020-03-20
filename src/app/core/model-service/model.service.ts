@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpModelFactory, IHttpModel, IHttpResponse } from '@danielc7150/ng-api';
+import { HttpCollectionFactory, HttpModelFactory, IHttpCollection, IHttpModel, IHttpResponse } from '@danielc7150/ng-api';
+
 import { HttpService } from '../http-service/http.service';
 
 @Injectable({
@@ -12,6 +13,12 @@ export class ModelService {
     const res: IHttpResponse = await this._httpService.get(url);
 
     return HttpModelFactory.create(res, this._httpService);
+  }
+
+  public async list(url: string): Promise<IHttpCollection> {
+    const res: IHttpResponse = await this._httpService.get(url);
+
+    return HttpCollectionFactory.create(res, this._httpService);
   }
 
   public async post(url: string, data: any): Promise<IHttpModel> {

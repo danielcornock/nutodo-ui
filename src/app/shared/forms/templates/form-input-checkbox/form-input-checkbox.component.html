@@ -1,0 +1,10 @@
+<label [attr.for]="fieldConfig.label" class="formInputCheckbox-labelContainer">
+  <input
+    [attr.id]="fieldConfig.label"
+    type="checkbox"
+    class="formInputCheckbox-checkbox"
+    #input
+    [formControl]="fieldConfig.control"
+  />
+  <p class="formInputCheckbox-label">{{ fieldConfig.label }}</p>
+</label>

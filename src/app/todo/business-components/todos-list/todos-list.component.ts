@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { IHttpModel } from '@danielc7150/ng-api';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { IHttpCollection, IHttpModel } from '@danielc7150/ng-api';
 import { StateService } from '@uirouter/core';
+import { Subscription } from 'rxjs';
 import { ModelService } from 'src/app/core/model-service/model.service';
-
-import { ITodo } from '../../interfaces/todo.interface';
 
 const enum TodoCategories {
   WEEKLY = 'week',
@@ -16,11 +15,17 @@ const enum TodoCategories {
   templateUrl: './todos-list.component.html',
   styleUrls: ['./todos-list.component.scss']
 })
-export class TodosListComponent implements OnInit {
-  public todos: IHttpModel;
-  public weeklyTodos: Array<ITodo>;
-  public monthlyTodos: Array<ITodo>;
-  public backlogTodos: Array<ITodo>;
+export class TodosListComponent implements OnInit, OnDestroy {
+  @Input()
+  public todosListCollection: IHttpCollection;
+
+  public todos: IHttpCollection;
+  public weeklyTodos: Array<IHttpModel>;
+  public monthlyTodos: Array<IHttpModel>;
+  public backlogTodos: Array<IHttpModel>;
+
+  private _collectionObservable: Subscription;
+  private _activeTodo: string = 'week';
 
   constructor(
     private readonly _modelService: ModelService,
@@ -28,9 +33,24 @@ export class TodosListComponent implements OnInit {
   ) {}
 
   public async ngOnInit(): Promise<void> {
-    this.todos = await this._modelService.get('todos');
-    this._assignTodos();
-    console.log(this.weeklyTodos);
+    console.log(this.todosListCollection);
+    this._collectionObservable = this.todosListCollection
+      .onStatusChanges()
+      .subscribe(() => {
+        this._assignTodos();
+      });
+  }
+
+  public refreshList(): void {
+    this.todosListCollection.reload();
+  }
+
+  public setActive(todoType: string): void {
+    this._activeTodo = todoType;
+  }
+
+  public isActive(todoType: string): boolean {
+    return this._activeTodo === todoType;
   }
 
   public createNewTodo(): void {
@@ -43,9 +63,13 @@ export class TodosListComponent implements OnInit {
     this.backlogTodos = this._filterTodos(TodoCategories.BACKLOG);
   }
 
-  private _filterTodos(category: TodoCategories): Array<ITodo> {
-    return this.todos.data.filter((todo: ITodo) => {
-      return todo.category === category;
+  private _filterTodos(category: TodoCategories): Array<IHttpModel> {
+    return this.todosListCollection.models.filter((model: IHttpModel) => {
+      return model.data.category === category;
     });
+  }
+
+  public ngOnDestroy(): void {
+    this._collectionObservable.unsubscribe();
   }
 }
