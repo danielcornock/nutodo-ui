@@ -1,0 +1,23 @@
+@import 'src/assets/styles/themes.scss';
+
+.todoCreate {
+  &-container {
+    padding: 10px;
+  }
+
+  &-header {
+    margin-bottom: 10px;
+  }
+
+  &-save {
+    @include button-reset;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: $purple-200;
+    color: $purple-700;
+    @include center-contents;
+    height: 41px;
+  }
+}

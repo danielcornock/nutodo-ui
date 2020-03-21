@@ -19,6 +19,7 @@ export class TodoItemComponent {
   public todoItemMoveRight: EventEmitter<void> = new EventEmitter<void>();
 
   public TODO_CATEGORY: typeof TODO_CATEGORY = TODO_CATEGORY;
+  public isMoved: boolean = false;
 
   constructor() {}
 
@@ -32,9 +33,11 @@ export class TodoItemComponent {
   }
   public moveLeft(): void {
     this.todoItemMoveLeft.emit();
+    this.isMoved = true;
   }
 
   public moveRight(): void {
     this.todoItemMoveRight.emit();
+    this.isMoved = true;
   }
 }

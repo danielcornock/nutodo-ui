@@ -1,8 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { IHttpCollection, IHttpModel } from '@danielc7150/ng-api';
-import { StateService } from '@uirouter/core';
 import { Subscription } from 'rxjs';
-import { ModelService } from 'src/app/core/model-service/model.service';
 
 const enum TodoCategories {
   WEEKLY = 'week',
@@ -27,10 +25,7 @@ export class TodosListComponent implements OnInit, OnDestroy {
   private _collectionObservable: Subscription;
   private _activeTodo: string = 'week';
 
-  constructor(
-    private readonly _modelService: ModelService,
-    private readonly _stateService: StateService
-  ) {}
+  constructor() {}
 
   public async ngOnInit(): Promise<void> {
     console.log(this.todosListCollection);
@@ -51,10 +46,6 @@ export class TodosListComponent implements OnInit, OnDestroy {
 
   public isActive(todoType: string): boolean {
     return this._activeTodo === todoType;
-  }
-
-  public createNewTodo(): void {
-    this._stateService.go('todoCreate');
   }
 
   private _assignTodos(): void {

@@ -1,0 +1,33 @@
+@import 'src/assets/styles/themes.scss';
+
+.header {
+  &-container {
+    background: linear-gradient(to bottom right, #8e2de2, #4a00e0);
+    padding-bottom: 24px;
+  }
+
+  &-contentContainer {
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+  }
+
+  &-addTodoButton {
+    @include button-reset;
+    font-size: 20px;
+    color: white;
+  }
+
+  &-menuButton {
+    @include button-reset;
+    color: white;
+    font-size: 20px;
+  }
+}

@@ -26,6 +26,7 @@ export class TodoCreateComponent implements OnInit {
 
   public async saveTodo(): Promise<void> {
     if (this.formContainer.form.valid) {
+      console.log('save');
       await this.todoModel.update();
       this._stateService.go('todosList');
     }

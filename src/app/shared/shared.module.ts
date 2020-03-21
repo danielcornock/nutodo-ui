@@ -5,11 +5,16 @@ import { ApiModule } from '@danielc7150/ng-api';
 import { FormModule } from '@danielc7150/ng-forms';
 
 import { CoreModule } from '../core/core.module';
+import { HeaderComponent } from './components/header/header.component';
 import { FormInputCheckboxComponent } from './forms/templates/form-input-checkbox/form-input-checkbox.component';
 import { FormInputSelectComponent } from './forms/templates/form-input-select/form-input-select.component';
 
 @NgModule({
-  declarations: [FormInputSelectComponent, FormInputCheckboxComponent],
+  declarations: [
+    FormInputSelectComponent,
+    FormInputCheckboxComponent,
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
     FormModule,
@@ -25,7 +30,8 @@ import { FormInputSelectComponent } from './forms/templates/form-input-select/fo
     ApiModule,
     FormsModule,
     ReactiveFormsModule,
-    FormInputCheckboxComponent
+    FormInputCheckboxComponent,
+    HeaderComponent
   ]
 })
 export class SharedModule {}

@@ -1,0 +1,15 @@
+.formInputSelect {
+  &-label {
+    select {
+      height: 41px;
+      display: block;
+      font-size: 16px;
+      color: $gray-800;
+      background-color: $gray-200;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      margin-top: 10px;
+    }
+  }
+}

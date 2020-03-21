@@ -1,4 +1,4 @@
-<div class="todoItem-container">
+<div class="todoItem-container" *ngIf="!isMoved">
   <button
     class="todoItem-moveButton"
     *ngIf="categoryIsNot(TODO_CATEGORY.Week)"
